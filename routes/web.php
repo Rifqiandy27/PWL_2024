@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,13 +23,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', function () {
-    return 'Hello World';
-});
+//resource controller
+Route::resource('photos', PhotoController::class);
 
-Route::get('/world', function () {
- return 'World';
-});
+Route::resource('photos', PhotoController::class)->only([
+    'index', 'show'
+   ]);
+   Route::resource('photos', PhotoController::class)->except([
+    'create', 'store', 'update', 'destroy'
+   ]);
+   
+
+//perubahan ke controller
+Route::get('/hello', [ArticleController::class,'hello']);
 
 Route::get('/selamat datang', function () {
     return 'Selamat Datang';
