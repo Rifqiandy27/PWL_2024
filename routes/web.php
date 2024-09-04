@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/greeting', [WelcomeController::class,
+'greeting']);
+
+    
 //resource controller
 Route::resource('photos', PhotoController::class);
 
